@@ -4,11 +4,25 @@
 open System 
 open System.Windows.Forms 
 open System.Drawing 
- 
-//do 
-//    Application.Run(mainForm) // #2 
+
+module Map = 
+    let BomsMap =
+        let BomsCount = 10
+        let MapHigh = 10
+        let MapWidth = 10
+        let rand = System.Random()
+
+        let rec generateBoms n col =
+            if Set.count col = n
+            then col
+            else generateBoms n (Set.add (rand.Next(MapHigh), rand.Next(MapWidth)) col)
+
+        generateBoms BomsCount Set.empty
+
+
+
 let form = new Form(Text = "ボタンテスト", Height = 600,Width = 800)
-let btn = new Button(Text = "OK")
+
 
 type Square = class
     inherit Button
@@ -20,6 +34,7 @@ type Square = class
     member x.changeIsBomb input = x.isBomb <- input
 
 end
+
 
 
 
@@ -39,3 +54,7 @@ done
 //form.Controls.Add(btn)
 
 Application.Run(form)
+
+
+
+Map.BomsMap |> ignore
