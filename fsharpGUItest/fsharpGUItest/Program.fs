@@ -6,18 +6,18 @@ open System.Windows.Forms
 open System.Drawing 
 
 module Map = 
-    let BomsMap =
-        let BomsCount = 10
+    let BombsMap =
+        let BombsCount = 10
         let MapHigh = 10
         let MapWidth = 10
         let rand = System.Random()
 
-        let rec generateBoms n col =
+        let rec generateBombs n col =
             if Set.count col = n
             then col
-            else generateBoms n (Set.add (rand.Next(MapHigh), rand.Next(MapWidth)) col)
+            else generateBombs n (Set.add (rand.Next(MapHigh), rand.Next(MapWidth)) col)
 
-        generateBoms BomsCount Set.empty
+        generateBombs BombsCount Set.empty
 
 
 
@@ -57,4 +57,4 @@ Application.Run(form)
 
 
 
-Map.BomsMap |> ignore
+Map.BombsMap |> ignore
